@@ -1,0 +1,55 @@
+version: '3'
+services:
+    postgres:
+        container_name: postgres_dev
+        image: postgres:12-alpine
+        environment:
+            POSTGRES_USER: airflow
+            POSTGRES_PASSWORD: airflow
+            POSTGRES_DB: airflow
+        ports:
+            - "5432:5432"
+
+    webserver:
+        container_name: airflow_dev
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+            - postgres
+        environment:
+            - PYTHONPATH=/home/airflow/dags
+            # airflow connection with postgre container
+            - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+            - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+            # disable example loading
+            - AIRFLOW__CORE__LOAD_EXAMPLES=FALSE
+            # Disable Connection with Google Storage
+            - AIRFLOW__CORE__REMOTE_LOGGING=FALSE
+            # pick up new DAGs every 10s, also reduces CPU usage since default on min_file_process_interval is 0
+            - AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL=10
+            - AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL=10
+            # make navbar purple
+            - AIRFLOW__WEBSERVER__NAVBAR_COLOR=#552f70
+            # kill workers every 5min instead of the default 2min
+            - AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT=300
+            # restart workers every 15min instead of the default 30s
+            - AIRFLOW__WEBSERVER__WORKER_REFRESH_INTERVAL=900
+            - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=TRUE
+        volumes:
+            - ./dags:/home/airflow/dags
+            - ./plugins:/home/airflow/plugins
+            - ./scripts:/home/airflow/scripts
+            - ./src:/home/airflow/src
+        ports:
+            - "8080:8080"
+        command: >
+            bash -c "
+                airflow upgradedb;
+                airflow scheduler -D;
+                airflow webserver"
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /home/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
