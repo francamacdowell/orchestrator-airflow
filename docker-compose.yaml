@@ -18,7 +18,7 @@ services:
         depends_on:
             - postgres
         environment:
-            - PYTHONPATH=/home/airflow/dags
+            - PYTHONPATH=/home/airflow
             # airflow connection with postgre container
             - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
             - AIRFLOW__CORE__EXECUTOR=LocalExecutor
@@ -38,9 +38,7 @@ services:
             - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=TRUE
         volumes:
             - ./dags:/home/airflow/dags
-            - ./plugins:/home/airflow/plugins
             - ./scripts:/home/airflow/scripts
-            - ./src:/home/airflow/src
         ports:
             - "8080:8080"
         command: >

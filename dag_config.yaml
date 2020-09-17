@@ -1,0 +1,8 @@
+dags:
+    airbnb:
+    
+      start_date: '2020-05-01'
+      schedule_interval_days: 1
+      retries: 3
+      retry_delay_minutes: 5
+      bucket_name: 'datatour_crawlers'
