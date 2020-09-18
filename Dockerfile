@@ -8,5 +8,6 @@ USER airflow
 WORKDIR /home/airflow
 COPY ./requirements.txt /home/airflow/
 COPY ./dag_config.yaml /home/airflow/
+COPY ./google_credentials.json /home/airflow/
 RUN pip3 install --upgrade pip --user
 RUN pip3 install -r /home/airflow/requirements.txt -q --user

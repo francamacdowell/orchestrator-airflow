@@ -17,6 +17,8 @@
 * [Contact](#contact)
 * [Acknowledgements](#acknowledgements)
 
+## Architecture
+TO DO: ARCHITECTURE DIAGRAM
 
 One to two paragraph statement about your product and what it does.
 
