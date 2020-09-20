@@ -13,14 +13,15 @@ class StorageHook():
 
     # def upload_blobs(self, bucket_name: str = None, file_names_list: List[str] = None, github_url: str = None, storage_folder_path: str = None):
     def upload_blobs(**kwargs):
+        """Uploads a file to the bucket."""
+        # bucket_name = "your-bucket-name"
+        # file_names_list = ["github/filename1", "github/filename2", "github/filename3"]
+        # storage_folder_path = "storage-path"
+        # destination_blob_name = "storage-object-name"
         bucket_name = kwargs['bucket_name']
         file_names_list = kwargs['file_names_list']
         github_url = kwargs['github_url']
         storage_folder_path = kwargs['storage_folder_path']
-        """Uploads a file to the bucket."""
-        # bucket_name = "your-bucket-name"
-        # source_file_name = "local/path/to/file"
-        # destination_blob_name = "storage-object-name"
         credentials = service_account.Credentials.from_service_account_file(
         "/home/airflow/google_credentials.json", scopes=["https://www.googleapis.com/auth/cloud-platform"],
         )
@@ -49,6 +50,7 @@ class StorageHook():
 
         bucket_name = kwargs['bucket_name']
         source_blob_name = kwargs['source_blob_name']
+        destination_blob_name = kwargs['destination_blob_name']
         
         credentials = service_account.Credentials.from_service_account_file(
         "/home/airflow/google_credentials.json", scopes=["https://www.googleapis.com/auth/cloud-platform"],
@@ -74,7 +76,7 @@ class StorageHook():
         df = pd.DataFrame.from_records([airbnb])
 
         s_buf = df.to_string(None, index=False)
-        blob2 = bucket.blob("airbnb/raw/refined")
+        blob2 = bucket.blob(destination_blob_name)
         blob2.upload_from_string(s_buf)
 
         print(

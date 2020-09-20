@@ -24,13 +24,11 @@ services:
             - AIRFLOW__CORE__EXECUTOR=LocalExecutor
             # disable example loading
             - AIRFLOW__CORE__LOAD_EXAMPLES=FALSE
-            # Disable Connection with Google Storage
-            - AIRFLOW__CORE__REMOTE_LOGGING=FALSE
             # pick up new DAGs every 10s, also reduces CPU usage since default on min_file_process_interval is 0
             - AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL=10
             - AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL=10
             # make navbar purple
-            - AIRFLOW__WEBSERVER__NAVBAR_COLOR=#552f70
+            - AIRFLOW__WEBSERVER__NAVBAR_COLOR=#a42c07
             # kill workers every 5min instead of the default 2min
             - AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT=300
             # restart workers every 15min instead of the default 30s
@@ -45,6 +43,7 @@ services:
             bash -c "
                 airflow upgradedb;
                 airflow scheduler -D;
+                rm /home/airflow/airflow-scheduler.*;
                 airflow webserver"
         healthcheck:
             test: ["CMD-SHELL", "[ -f /home/airflow/airflow-webserver.pid ]"]

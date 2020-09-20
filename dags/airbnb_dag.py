@@ -17,9 +17,6 @@ dag_config = yaml_config['dags']['airbnb']
 default_args = {
     'owner': 'França',
     'start_date': dag_config['start_date'],
-    'email': ['airflow@example.com'],
-    'email_on_failure': False,
-    'email_on_retry': False,
     'retries': dag_config['retries'],
     'retry_delay': timedelta(minutes=dag_config['retry_delay_minutes']),
 }
@@ -36,7 +33,10 @@ with models.DAG("elt_airbnb_dag",
         provide_context=False,
         catchup=False,
         python_callable=StorageHook.upload_blobs,
-        op_kwargs={'bucket_name': "datatour_crawlers", 'file_names_list': FILE_NAMES, 'github_url': GITHUB_BASE_URL_DOWNLOAD, 'storage_folder_path': "airbnb"},
+        op_kwargs={"bucket_name": "toureyes-data-lake",
+                   "file_names_list": FILE_NAMES,
+                   "github_url": GITHUB_BASE_URL_DOWNLOAD,
+                   "storage_folder_path": "datasprints/raw"},
         dag=dag,
     )
 
@@ -46,7 +46,9 @@ with models.DAG("elt_airbnb_dag",
         provide_context=False,
         catchup=False,
         python_callable=StorageHook.download_blob,
-        op_kwargs={'bucket_name': "datatour_crawlers", 'source_blob_name': "airbnb/369120472020-04-02.json"},
+        op_kwargs={"bucket_name": "toureyes-data-lake",
+                   "source_blob_name": "datasprints/raw/369120472020-04-02.json",
+                   "destination_blob_name": "datasprints/refined/369120472020-04-02"},
         dag=dag,
     )
 
