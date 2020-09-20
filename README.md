@@ -1,8 +1,7 @@
-# Product Name
-> Short blurb about what your product does.
+# Airflow as pipeline orchestrator 
+> Example usage and deployment of Airflow scheduling and monitoring workflows with docker-compose.
 
 
-<!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
 * [About the Project](#about-the-project)
@@ -14,8 +13,6 @@
   * [Executing the project](#installation)
 * [Contributing](#contributing)
 * [Acknowledgements](#acknowledgements)
-
-
 
 ## About the project
 
