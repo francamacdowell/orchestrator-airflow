@@ -1,4 +1,4 @@
-# Airflow as pipeline orchestrator 
+# Airflow as Pipeline Orchestrator 
 > Example usage and deployment of Airflow scheduling and monitoring workflows with docker-compose.
 
 
@@ -18,22 +18,22 @@
 
 Project showing an example of how to build a production [Airflow](https://airflow.apache.org/) with [Docker](https://www.docker.com/), managed by [Docker-compose](https://docs.docker.com/compose/) and using [ELT](https://en.wikipedia.org/wiki/Extract,_load,_transform) pipelines to ingest and move data through [Data Lake](https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/) stages.
 
-### Build with
+### Build With
 I already have mentioned some technologies I used to build this project but not all of them. Therefore, here is a summary of them:
 
-* Python: Programming language which Airflow is used and also used to connect do GCP and manipulate data;
-* Pip: Is the package installer for Python
-* Airflow: is a platform created by the community to programmatically author, schedule and monitor workflows. In our case, data pipelines.
-* Docker and Docker-compose: With Docker we create images to run as containers and packages up code and all its dependencies. Therefore the application runs quickly and reliably from one computing environment to another.
-* Cloud Storage: Is an object storage from Google Cloud Platform (GCP) and usually used as Data Lake because of your main characteristics as unlimited storage with no minimum object size, easily transfer and others likely any Hadoop data repository
-* YAML files: Is a serialization language often used as a format for configuration files, but its object serialization abilities make it a viable replacement for languages like JSON. In this project we use like a configuration file to build our Airflow DAGs
+* *Python*: Programming language which Airflow is used and also used to connect do GCP and manipulate data;
+* *Pip*: Is the package installer for Python
+* *Airflow*: is a platform created by the community to programmatically author, schedule and monitor workflows. In our case, data pipelines.
+* *Docker* and *Docker-compose*: With Docker we create images to run as containers and packages up code and all its dependencies. Therefore the application runs quickly and reliably from one computing environment to another.
+* *Cloud Storage*: Is an object storage from Google Cloud Platform (GCP) and usually used as Data Lake because of your main characteristics as unlimited storage with no minimum object size, easily transfer and others likely any Hadoop data repository
+* *YAML file*: Is a serialization language often used as a format for configuration files, but its object serialization abilities make it a viable replacement for languages like JSON. In this project we use like a configuration file to build our Airflow DAGs
 
 ### Architecture Diagram
 This is a fingerprint of project's architecture.
 
 ![Project Architecture](/images/project-architecture.png)
 
-We are extracting data from Github, storing on Storage stage called Raw Data exactly as data is find on GitHub. Extracting from Raw Data stage, doing some data manipulations and storing as Python DataFrame in a second stage called Refined Data. All of this with python code orchestrated by Airflow running inside of a Docker Container. 
+We are extracting data *from Github*, *storing on Storage* stage called _Raw Data_ exactly as data is found on GitHub. Extracting from *Raw Data stage*, doing some data manipulations (turning into _tabular data_) and storing on a second stage called _Refined Data_. All with Python code orchestrated by Airflow running inside of a Docker Container. 
 
 ### Missing Parts
 
