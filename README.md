@@ -7,11 +7,11 @@
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
-  * [Architecture Diagram](#architecture)
+  * [Architecture Diagram](#architecture-diagram)
   * [Missing parts](#missing-parts)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Executing the project](#installation)
+  * [Executing the project](#executing-the-project)
 * [Contributing](#contributing)
 * [Acknowledgements](#acknowledgements)
 
@@ -19,7 +19,7 @@
 
 Project showing an example of how to build a production [Airflow](https://airflow.apache.org/) with [Docker](https://www.docker.com/), managed by [Docker-compose](https://docs.docker.com/compose/) and using [ELT](https://en.wikipedia.org/wiki/Extract,_load,_transform) pipelines to ingest and move data through [Data Lake](https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/) stages.
 
-### Build With
+### Built With
 I already have mentioned some technologies I used to build this project but not all of them. Therefore, here is a summary of them:
 
 * **Python**: Programming language which Airflow is built and also used to connect to GCP and manipulate data;
