@@ -21,9 +21,9 @@ Project showing an example of how to build a production [Airflow](https://airflo
 ### Build With
 I already have mentioned some technologies I used to build this project but not all of them. Therefore, here is a summary of them:
 
-* **Python**: Programming language which Airflow is used and also used to connect do GCP and manipulate data;
+* **Python**: Programming language which Airflow is built and also used to connect to GCP and manipulate data;
 * **Pip**: Is the package installer for Python
-* **Airflow**: is a platform created by the community to programmatically author, schedule and monitor workflows. In our case, data pipelines.
+* **Airflow**: Is a platform created by the community to programmatically author, schedule and monitor workflows. In our case, data pipelines.
 * **Docker** and **Docker-compose**: With Docker we create images to run as containers and packages up code and all its dependencies. Therefore the application runs quickly and reliably from one computing environment to another.
 * **Cloud Storage**: Is an object storage from Google Cloud Platform (GCP) and usually used as Data Lake because of your main characteristics as unlimited storage with no minimum object size, easily transfer and others likely any Hadoop data repository
 * **YAML file**: Is a serialization language often used as a format for configuration files, but its object serialization abilities make it a viable replacement for languages like JSON. In this project we use like a configuration file to build our Airflow DAGs
@@ -33,27 +33,25 @@ This is a fingerprint of project's architecture.
 
 ![Project Architecture](/images/project-architecture.png)
 
-We are extracting data **from Github**, **storing on Storage** stage called _Raw Data_ exactly as data is found on GitHub. Extracting from **Raw Data stage**, doing some data manipulations (turning into _tabular data_) and storing on a second stage called _Refined Data_. All with Python code orchestrated by Airflow running inside of a Docker Container. 
+We are extracting data **from GitHub**, **storing it on Storage** stage ,called _Raw Data_, exactly as data is found. Extracting from **Raw Data stage**, doing some data manipulations (turning into _tabular data_) and storing on a second stage called _Refined Data_. All with Python code orchestrated by Airflow running inside of a Docker Container. 
 
 ### Missing Parts
 
-Within this porfolio project I would like to show how to deploy the project in a VM (Compute Engine from GCP or EC2 from AWS).
-
-Also how to update with new code.
+With this porfolio project, also would like to show how to deploy the project using VM (Compute Engine from GCP or EC2 from AWS).
 
 ## Getting Started
 
-Now we are going to see what we need and what to do to execute this project, which is basically:
+What we need and what to do to execute this project, is basically:
 * Start a container
 * Enter Airflow server
-* Control and see your DAGs
+* Control and see your DAGs and tasks
 
 ### Prerequisites
 
-I'll need these softwares installed:
+I'll need:
 
-* Docker: I'm using _version 19.03.12_
-* Docker-compose: _version 1.26.2_
+* Install Docker: I'm using _version 19.03.12_
+* Install Docker-compose: _version 1.26.2_
 * Configure `google_credentials.json`: To access GCP you have to create a project and [generate an service account keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) by JSON file. Rename by `google_credentials.json` and put on root folder.
 
 ### Executing the project
@@ -61,7 +59,7 @@ After complete the prerequisites, we are ready to execute the project with a sim
 
 `sudo docker-compose up --build -d`
 
-#### Docker-compose commands and parameters
+#### Docker-compose commands and parameters meaning
 
 * `up`: Builds, (re)creates, starts, and attaches to containers for a service.
 * `--build`: Make Docker build images before starting containers.
