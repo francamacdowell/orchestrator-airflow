@@ -1,6 +1,7 @@
 # Airflow as Pipeline Orchestrator 
 > Example of usage and deployment of Airflow scheduling and monitoring workflows with docker-compose.
 
+![Airflow Webserver](/images/airflow-webserver.png)
 
 ## Table of Contents
 
