@@ -49,7 +49,7 @@ What we need and what to do to execute this project, is basically:
 
 ### Prerequisites
 
-I'll need:
+Will need:
 
 * Install Docker: I'm using _version 19.03.12_
 * Install Docker-compose: _version 1.26.2_
