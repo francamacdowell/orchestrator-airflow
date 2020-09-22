@@ -60,6 +60,10 @@ After complete the prerequisites, we are ready to execute the project with a sim
 
 `sudo docker-compose up --build -d`
 
+Now access on your browser:
+
+`localhost:8080`
+
 #### Docker-compose commands and parameters meaning
 
 * `up`: Builds, (re)creates, starts, and attaches to containers for a service.
