@@ -1,2 +1,2 @@
-from .utils import FILE_NAMES
-from .utils import GITHUB_BASE_URL_DOWNLOAD
+from .constants import FILE_NAMES
+from .constants import GITHUB_BASE_URL_DOWNLOAD
