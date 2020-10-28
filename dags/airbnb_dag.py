@@ -9,7 +9,7 @@ from airflow.utils.dates import days_ago
 from utils.storage import StorageHook
 from utils import config
 
-from utils import FILE_NAMES, GITHUB_BASE_URL_DOWNLOAD
+from constants import FILE_NAMES, GITHUB_BASE_URL_DOWNLOAD
 
 yaml_config = config.get_yaml_config()
 dag_config = yaml_config['dags']['airbnb']
